@@ -1,0 +1,8 @@
+---
+config:
+  ListenAddress: "{{ mattermost_push_proxy_address }}"
+  ThrottlePerSec: "{{ mattermost_push_proxy_throttle_per_sec }}"
+  ThrottleMemoryStoreSize: "{{ mattermost_push_proxy_throttle_memory_store_size }}"
+  ThrottleVaryByHeader: "{{ mattermost_push_proxy_throttle_vary_by_header }}"
+  ApplePushSettings: "{{ mattermost_push_proxy_apple }}"
+  AndroidPushSettings: "{{ mattermost_push_proxy_android }}"

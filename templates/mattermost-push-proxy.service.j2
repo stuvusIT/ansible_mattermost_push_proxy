@@ -1,0 +1,12 @@
+[Unit]
+Description=Mattermost push proxy
+After=syslog.target network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/mattermost-push-proxy/bin
+User={{ mattermost_push_proxy_user }}
+ExecStart=/opt/mattermost-push-proxy/bin/mattermost-push-proxy
+
+[Install]
+WantedBy=multi-user.target

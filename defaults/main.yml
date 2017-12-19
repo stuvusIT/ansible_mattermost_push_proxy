@@ -1,0 +1,10 @@
+---
+mattermost_push_proxy_version_short: 4.4
+mattermost_push_proxy_version: 4.4.0
+mattermost_push_proxy_user: mattermost-push-proxy
+mattermost_push_proxy_address: "127.0.0.1:8066"
+mattermost_push_proxy_throttle_per_sec: 300
+mattermost_push_proxy_throttle_memory_store_size: 50000
+mattermost_push_proxy_throttle_vary_by_header: X-Forwarded-For
+mattermost_push_proxy_apple: []
+mattermost_push_proxy_android: []
