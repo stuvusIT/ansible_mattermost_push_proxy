@@ -1,0 +1,41 @@
+---
+- name: Download the push proxy
+  get_url:
+    url: "https://github.com/mattermost/mattermost-push-proxy/releases/download/v{{ mattermost_push_proxy_version_short }}/mattermost-push-proxy-{{ mattermost_push_proxy_version }}.tar.gz"
+    dest: "{{ global_cache_dir | mandatory }}/"
+  become: false
+  delegate_to: localhost
+
+- name: Extract the push proxy
+  unarchive:
+    src: "{{ global_cache_dir }}/mattermost-push-proxy-{{ mattermost_push_proxy_version }}.tar.gz"
+    dest: /opt
+  args:
+    creates: /opt/mattermost-push-proxy/bin/mattermost-push-proxy
+
+- name: Create user to run the push proxy
+  user:
+    name: "{{ mattermost_push_proxy_user }}"
+    system: true
+    createhome: no
+
+- name: Create systemd service
+  template:
+    src: mattermost-push-proxy.service.j2
+    dest: /etc/systemd/system/mattermost-push-proxy.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create configuration
+  copy:
+    dest: /opt/mattermost-push-proxy/config/mattermost-push-proxy.json
+    content: "{{ config | to_nice_json }}"
+    owner: "{{ mattermost_push_proxy_user }}"
+    mode: 0600 # Very private because it contains API keys
+  notify: Restart the push proxy
+
+- name: Enable service
+  service:
+    name: mattermost-push-proxy.service
+    enabled: yes

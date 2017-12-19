@@ -1,0 +1,5 @@
+---
+- name: Restart the push proxy
+  service:
+    name: mattermost-push-proxy.service
+    state: restarted
