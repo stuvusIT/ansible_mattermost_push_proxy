@@ -1,6 +1,6 @@
 ---
-mattermost_push_proxy_version_short: 4.4
-mattermost_push_proxy_version: 4.4.0
+mattermost_push_proxy_version_short: 5.9
+mattermost_push_proxy_version: 5.9.0
 mattermost_push_proxy_user: mattermost-push-proxy
 mattermost_push_proxy_address: "127.0.0.1:8066"
 mattermost_push_proxy_throttle_per_sec: 300
